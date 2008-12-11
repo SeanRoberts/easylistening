@@ -1,33 +1,36 @@
 class Clamp
-  
+
   def initialize(path)
     @path_to_clamp = path
   end
-  
+
   def self.path
-    "F:\\Program Files\\clamp.exe"
+    "F:/Program\ Files/clamp.exe"
   end
-  
+
   def self.run(command, arguments = '')
     arguments.gsub!(/&&|\||;/, '')
-    return false unless COMMANDS[command.upcase]
-    "#{self.path} /#{command} \"#{arguments}\""
+    puts "#{command} not recognized" and return false unless COMMANDS[command.upcase]
+    cmd = "#{self.path} /#{command}" 
+    cmd += ' "' + arguments + '"' unless arguments.blank?
+    puts "Running #{cmd}..."
+    system(cmd)
   end
-  
+
   def self.play(path)
-    self.run('plclear')
-    self.run('pladd', path)
-    self.run('plfirst')
-    self.run('play')
+    self.run('PLCLEAR')
+    self.run('PLADD', path.gsub('/', '\\'))
+    self.run('PLFIRST')
+    self.run('PLAY')
   end
-  
+
   def self.play_album(tracks)
     self.run('plclear')
-    tracks.each { |track| self.run('pladd', track.path) }
+    tracks.each { |track| self.run('pladd', track.path.gsub('/', '\\')) }
     self.run('plfirst')
     self.run('play')
   end
-  
+
   COMMANDS = {
     # General
     "START" => "Start Winamp",
@@ -46,7 +49,7 @@ class Clamp
     "REW" => "Rewind 5 seconds",
     "JUMP" => "Seek to <time> (in millisecs)",
     "QUITAFTER" => "Close winamp upon completion of current track - CLAmp will not return immediately",
-    
+
     # Playlists
     "PLADD" => "Add file(s) to end of playlist (like drag-n-drop)",
     "LOAD" => "Same as above",
@@ -63,14 +66,14 @@ class Clamp
     "LOADNEW <file>" => "Same as /PLCLEAR /PLADD <file>",
     "LOADPLAY <file>" => "Shortcut for /PLCLEAR /PLADD <file> /PLAY",
     "PLSAVE <file>" => "Saves current playlist to <file> (as a M3U file)",
-    
-    
+
+
     # Winamp Volume Control
-    "VOLUP"	=> "Volume up",
-    "VOLDN"	=> 	"Volume down",
-    "VOLSET"	=> 	"Volume set (scale 0-255)",
-    "VOL=<value>"	=> 	"Volume set (scale 0-100)",
-    "VOLMAX"	=> 	"Volume max",
-    "VOLMIN"	=>  "Volume min (no sound)"
+    "VOLUP"  => "Volume up",
+    "VOLDN"  =>   "Volume down",
+    "VOLSET"  =>   "Volume set (scale 0-255)",
+    "VOL=<value>"  =>   "Volume set (scale 0-100)",
+    "VOLMAX"  =>   "Volume max",
+    "VOLMIN"  =>  "Volume min (no sound)"
   }
 end
