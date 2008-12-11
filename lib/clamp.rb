@@ -11,9 +11,22 @@ class Clamp
   def self.run(command, arguments = '')
     arguments.gsub!(/&&|\||;/, '')
     return false unless COMMANDS[command]
-    "#{self.path} /#{command} #{arguments}"
+    "#{self.path} /#{command} \"#{arguments}\""
   end
   
+  def self.play(path)
+    self.run('plclear')
+    self.run('pladd', path)
+    self.run('plfirst')
+    self.run('play')
+  end
+  
+  def self.play_album(tracks)
+    self.run('plclear')
+    tracks.each { |track| self.run('pladd', track.path) }
+    self.run('plfirst')
+    self.run('play')
+  end
   
   COMMANDS = {
     # General

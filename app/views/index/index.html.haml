@@ -9,6 +9,8 @@
       %td
         = track.title
         = link_to "play", "/index/play/#{track.id}"
+        &nbsp;
+        = link_to "play album", "/index/play_album/#{track.album.id}" if track.album
       %td= track.artist.title if track.artist
       %td= track.album.title if track.album
       %td= track.track_number

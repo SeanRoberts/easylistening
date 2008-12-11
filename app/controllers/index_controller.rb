@@ -7,9 +7,13 @@ class IndexController < ApplicationController
   
   def play
     @track = Track.find(params[:id])
-    Clamp.run('plclear')
-    Clamp.run('load', @track.path)
-    Clamp.run('play')
+    Clamp.play(@track.path)
+    redirect_to :action => :index
+  end
+  
+  def play_album
+    @album = Album.find(params[:id], :include => "tracks", :order => "tracks.sort_track_number")
+    Clamp.play_album(@album.tracks)
     redirect_to :action => :index
   end
 end
