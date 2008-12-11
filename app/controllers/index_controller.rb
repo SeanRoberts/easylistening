@@ -7,7 +7,9 @@ class IndexController < ApplicationController
   
   def play
     @track = Track.find(params[:id])
-    Clamp.run('PLAY', @track.path)
+    Clamp.run('plclear')
+    Clamp.run('load', @track.path)
+    Clamp.run('play')
     redirect_to :action => :index
   end
 end
