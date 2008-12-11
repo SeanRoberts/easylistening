@@ -1,0 +1,11 @@
+!!! Strict
+%html{ :lang => "en" }
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }/
+    %title Easy Listening
+    %meta{ :name => "generator", :content => "TextMate http://macromates.com/" }/
+    %meta{ :name => "author", :content => "Sean Roberts" }/
+    = stylesheet_link_tag 'style'
+    / Date: 2008-12-09
+  %body
+    = yield
