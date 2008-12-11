@@ -6,7 +6,9 @@
     %th Track #
   - @tracks.each do |track|
     %tr{:class => cycle('normal', 'alternate')}
-      %td= track.title
+      %td
+        = track.title
+        = link_to "play", "/index/play/#{track.id}"
       %td= track.artist.title if track.artist
       %td= track.album.title if track.album
       %td= track.track_number

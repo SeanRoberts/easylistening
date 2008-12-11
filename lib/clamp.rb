@@ -1,14 +1,17 @@
 class Clamp
-  attr_accessor :path_to_clamp
   
   def initialize(path)
     @path_to_clamp = path
   end
   
-  def run(command, arguments = '')
+  def self.path
+    "F:\\Program Files\\clamp.exe"
+  end
+  
+  def self.run(command, arguments = '')
     arguments.gsub!(/&&|\||;/, '')
     return false unless COMMANDS[command]
-    "#{path_to_clamp} #{command} #{arguments}"
+    "#{self.path} #{command} #{arguments}"
   end
   
   
