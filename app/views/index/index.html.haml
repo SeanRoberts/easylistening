@@ -1,16 +1,10 @@
-%table
-  %tr
-    %th Title
-    %th Artist
-    %th Album
-    %th Track #
-  - @tracks.each do |track|
-    %tr{:class => cycle('normal', 'alternate')}
-      %td
-        = track.title
-        = link_to "play", "/index/play/#{track.id}"
-        &nbsp;
-        = link_to "play album", "/index/play_album/#{track.album.id}" if track.album
-      %td= track.artist.title if track.artist
-      %td= track.album.title if track.album
-      %td= track.track_number
+%h1 Welcome to EasyListening!
+
+%p 
+  This installation of EasyListening has an index of 
+  %strong= @count[:artists]
+  artists,
+  %strong= @count[:albums]
+  albums, and
+  %strong= @count[:tracks]
+  tracks.

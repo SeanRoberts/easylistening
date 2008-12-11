@@ -10,7 +10,7 @@ class Clamp
   
   def self.run(command, arguments = '')
     arguments.gsub!(/&&|\||;/, '')
-    return false unless COMMANDS[command]
+    return false unless COMMANDS[command.upcase]
     "#{self.path} /#{command} \"#{arguments}\""
   end
   

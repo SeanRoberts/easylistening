@@ -1,15 +1,53 @@
 body {
 	font-family: Helvetica, Arial, Sans-Serif;
-	font-size: 11px;
+	margin: 0;
+	font-size: 13px;
 }
 
 table {
-	width: 60%;
+	width: 100%;
 	border-collapse: collapse;
+	font-size: 11px;
 }
 
 th, td {
 	text-align: left;
 	padding: 5px;
 	border: 1px solid silver;
+}
+
+#header {
+	width: 100%;
+	background: #333;
+	color: white;
+	padding: 20px 0px;
+	margin-bottom: 20px;
+	border-top: 5px solid black;
+}
+
+#header h1, #header h3 {
+	padding: 0px 20px;
+}
+#header h1 {
+	font-size: 32px;
+	font-weight: normal;
+	margin: 0;
+}
+
+#nav {
+	float: left;
+	margin: 0px 20px;
+}
+
+#nav a {
+	display: block;
+	margin: 0px 0px 5px;
+}
+
+#body {
+	float: left;
+}
+
+#body h1 {
+	margin: 0px 0px 10px;
 }

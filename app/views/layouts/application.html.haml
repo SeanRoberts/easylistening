@@ -8,4 +8,13 @@
     = stylesheet_link_tag 'style'
     / Date: 2008-12-09
   %body
-    = yield
+    #header
+      %h1 EasyListening
+      %h3 Because walking to the living room is for suckers!
+      
+    #nav
+      = link_to "Artists", artists_path
+      = link_to "Albums", albums_path
+      = link_to "All Tracks", tracks_path
+    
+    #body= yield

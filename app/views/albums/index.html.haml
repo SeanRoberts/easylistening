@@ -1,0 +1,12 @@
+%table
+  %tr
+    %th Title
+    %th Artist
+    %th Tracks
+  - @albums.each do |album|
+    %tr{:class => cycle('normal', 'alternate')}
+      %td
+        = album.title
+        = link_to "play", "/albums/play/#{album.id}"
+      %td= album.tracks.first.artist.title if album.tracks.first && album.tracks.first.artist
+      %td= album.tracks.length
