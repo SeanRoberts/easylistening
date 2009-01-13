@@ -2,15 +2,58 @@
 "#AD0606"
 "#8A7676"
 "#D1A29C"
-"#D1A29C"
+"#96B0C4"
 "#6C8699"
 */
 body {
 	font-family: Helvetica, Arial, Sans-Serif;
 	margin: 0;
 	font-size: 13px;
+	color: #333;
 }
 
+a {
+	color: #AD0606;
+}
+
+a img {
+	vertical-align: middle;
+	border: 0px;
+}
+
+/*--------------- layout --------------- */
+#header-wrapper {
+	width: 100%;
+	background: #6C8699;
+	color: white;
+	padding: 20px 0px;
+	margin-bottom: 20px;
+	border-top: 5px solid #96B0C4;
+	font-family: "Georgia", Times, Sans-Serif;
+}
+
+#header, #container {
+	width: 960px;
+	margin: 0px auto;
+}
+
+#nav {
+	float: left;
+	margin-right: 20px;
+	width: 140px;
+}
+
+#body {
+	width: 800px;
+	float: left;
+}
+
+.pagination {
+	margin-bottom: 10px;
+	font-size: 11px;
+}
+
+/*------------ the info table ---------- */
 table {
 	width: 100%;
 	border-collapse: collapse;
@@ -19,42 +62,44 @@ table {
 
 th, td {
 	text-align: left;
-	padding: 5px;
-	border: 1px solid silver;
+	padding: 8px;
+	border-top: 1px solid silver;
 }
 
-#header {
-	width: 100%;
-	background: #333;
-	color: white;
-	padding: 20px 0px;
-	margin-bottom: 20px;
-	border-top: 5px solid black;
+tr.alternate {
+	background: #eee;
+}
+
+
+/*------------ text styles ----------- */
+h1, h2 {
+	color: #8A7676;
 }
 
 #header h1, #header h3 {
-	padding: 0px 20px;
+	color: white;
 }
 #header h1 {
 	font-size: 32px;
 	font-weight: normal;
 	margin: 0;
 }
-
-#nav {
-	float: left;
-	margin: 0px 20px;
-}
-
-#nav a {
-	display: block;
-	margin: 0px 0px 5px;
-}
-
-#body {
-	float: left;
-}
-
 #body h1 {
 	margin: 0px 0px 10px;
+}
+
+/*------------- navigation ----------- */
+#nav a {
+	text-decoration: none;
+}
+
+#nav ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#nav li {
+	border-top: 1px solid silver;
+	padding: 5px 10px;
 }

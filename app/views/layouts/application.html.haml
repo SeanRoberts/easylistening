@@ -2,19 +2,24 @@
 %html{ :lang => "en" }
   %head
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }/
-    %title Easy Listening
+    %title EasyListening
     %meta{ :name => "generator", :content => "TextMate http://macromates.com/" }/
     %meta{ :name => "author", :content => "Sean Roberts" }/
     = stylesheet_link_tag 'style'
     / Date: 2008-12-09
   %body
-    #header
-      %h1 EasyListening
-      %h3 Because walking to the living room is for suckers!
-      
-    #nav
-      = link_to "Artists", artists_path
-      = link_to "Albums", albums_path
-      = link_to "All Tracks", tracks_path
+    #header-wrapper
+      #header
+        %h1 
+          = image_tag('headphones.png', :style => "vertical-align: middle; width: 56px;")
+          EasyListening
+        %h3 Because walking to the living room is for suckers!
     
-    #body= yield
+    #container   
+      #nav
+        %ul
+          %li= link_to "Artists", artists_path
+          %li= link_to "Albums", albums_path
+          %li= link_to "All Tracks", tracks_path
+    
+      #body= yield

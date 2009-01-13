@@ -2,7 +2,7 @@ class AlbumsController < ApplicationController
   require 'clamp'
   
   def index
-    @albums = Album.paginate(:all, :order => "title", :include => :tracks, :page => params[:page], :per_page => 100)
+    @albums = Album.paginate(:all, :order => "title", :include => :tracks, :page => params[:page], :per_page => 50)
   end
   
   def play
