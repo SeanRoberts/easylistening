@@ -1,14 +1,14 @@
 = will_paginate @albums
 
 %table
-  %tr{:class => cycle(nil, 'alternate')}
-    %th Title
-    %th Artist
-    %th Tracks
   - @albums.each do |album|
     %tr{:class => cycle('normal', 'alternate')}
+      %td{:style => "width: 16px;"}= link_to image_tag("control_play.png"), "/albums/play/#{album.id}"
+    
       %td
-        = link_to image_tag("control_play.png"), "/albums/play/#{album.id}"
-        = album.title
-      %td= album.tracks.first.artist.title if album.tracks.first && album.tracks.first.artist
-      %td= album.tracks.length
+        %strong= album.title
+        %br/  
+        = album.tracks.first.artist.title if album.tracks.first && album.tracks.first.artist
+        %br/
+        = album.tracks.length
+        tracks

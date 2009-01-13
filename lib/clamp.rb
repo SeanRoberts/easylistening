@@ -12,7 +12,7 @@ class Clamp
     puts "#{command} not recognized" and return false unless COMMANDS[command.upcase]
     cmd = "#{@@path} /#{command}" 
     cmd += ' "' + arguments + '"' unless arguments.blank?
-    puts `#{cmd}`
+    system(cmd)
   end
 
   def play(path)
