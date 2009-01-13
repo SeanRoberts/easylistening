@@ -2,7 +2,7 @@ class Track < ActiveRecord::Base
   belongs_to :artist
   belongs_to :album
   
-  def get_info_from_tag!(tag)
+  def set_attributes_from_tag(tag)
     # Artist and Album
     self.artist = Artist.find_by_title(tag.artist.gsub(/\000/, '')) || Artist.create(:title => tag.artist.gsub(/\000/, '')) unless tag.artist.blank?
     self.album = Album.find_by_title(tag.album.gsub(/\000/, '')) || Album.create(:title => tag.album.gsub(/\000/, '')) unless tag.album.blank?

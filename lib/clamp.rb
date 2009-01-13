@@ -1,30 +1,29 @@
 class Clamp
-
-  def initialize(path)
-    @path_to_clamp = path
+  @@path = "F:/Program\ Files/clamp.exe"
+  
+  def initialize()
+    system(@@path + "/START")
+    sleep 1
   end
 
-  def self.path
-    "F:/Program\ Files/clamp.exe"
-  end
 
-  def self.run(command, arguments = '')
+  def run(command, arguments = '')
     arguments.gsub!(/&&|\||;/, '')
     puts "#{command} not recognized" and return false unless COMMANDS[command.upcase]
-    cmd = "#{self.path} /#{command}" 
+    cmd = "#{@@path} /#{command}" 
     cmd += ' "' + arguments + '"' unless arguments.blank?
     puts "Running #{cmd}..."
     system(cmd)
   end
 
-  def self.play(path)
+  def play(path)
     self.run('PLCLEAR')
     self.run('PLADD', path.gsub('/', '\\'))
     self.run('PLFIRST')
     self.run('PLAY')
   end
 
-  def self.play_album(tracks)
+  def play_album(tracks)
     self.run('plclear')
     tracks.each { |track| self.run('pladd', track.path.gsub('/', '\\')) }
     self.run('plfirst')

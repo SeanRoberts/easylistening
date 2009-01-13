@@ -7,14 +7,34 @@ namespace "easy" do
     @extnames = [".mp3", ".ogg", ".wav", ".wma"]
     Find.find(@base_dir) do |path|
       if @extnames.include?(File.extname(path))
-        unless Track.find_by_path(path)
-          puts "Processing #{path}..."
-          track, tag = Track.new(:path => path), ID3Lib::Tag.new(path)
-          track.get_info_from_tag!(tag)
+        print "Processing #{path}... "
+        track = Track.find_by_path(path)
+        if track.blank? || (track && track.updated_at < File.mtime(path))
+          track ||= Track.new(:path => path)
+          tag = ID3Lib::Tag.new(path)
+          track.set_attributes_from_tag(tag)
           track.save
+          puts "Updated!"
+        else
+          puts "No update required!"
         end
       end 
     end
+  end
+  
+  desc "Remove Dead Tracks"
+  task(:remove_dead_tracks => :environment) do
+    Track.all.each do |track|
+      unless File.exist?(track.path)
+        puts "#{track.path} not found.  Deleting from library."
+        track.destroy
+      end
+    end
+    
+    [Album, Artist].each do |klass|
+      klass.all.each { |obj| obj.destroy if obj.tracks.length < 1 }
+    end
+        
   end
   
   desc "Wipe The Entire Library"
