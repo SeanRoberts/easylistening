@@ -1,9 +1,12 @@
 namespace "easy" do
   desc "Update Media Library"
   task(:update_library => :environment) do
+    require 'yaml'
     require 'find'
     require 'id3lib'
-    @base_dir = "/Users/seanroberts/Music"
+    
+    config = YAML.load(File.open("#{RAILS_ROOT}/config/easy.yml"))
+    @base_dir = config['music_dir']
     @extnames = [".mp3", ".ogg", ".wav", ".wma"]
     Find.find(@base_dir) do |path|
       if @extnames.include?(File.extname(path))
