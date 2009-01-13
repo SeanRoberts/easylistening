@@ -74,4 +74,5 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
 
+CONFIG = YAML.load(File.open("#{RAILS_ROOT}/config/easy.yml"))
 require 'will_paginate'

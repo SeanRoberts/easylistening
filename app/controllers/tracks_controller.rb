@@ -7,7 +7,7 @@ class TracksController < ApplicationController
   
   def play
     @track = Track.find(params[:id])
-    Clamp.new.play(@track.path)
+    Clamp.new.play(@track.launch_path)
     redirect_to :action => :index
   end
   

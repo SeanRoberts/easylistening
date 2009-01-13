@@ -5,9 +5,9 @@ namespace "easy" do
     require 'find'
     require 'id3lib'
     
-    config = YAML.load(File.open("#{RAILS_ROOT}/config/easy.yml"))
-    @base_dir = config['music_dir']
+    @base_dir = CONFIG['music_dir']
     @extnames = [".mp3", ".ogg", ".wav", ".wma"]
+    puts "Searching #{@base_dir} for music..."
     Find.find(@base_dir) do |path|
       if @extnames.include?(File.extname(path))
         print "Processing #{path}... "

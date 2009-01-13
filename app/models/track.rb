@@ -19,5 +19,9 @@ class Track < ActiveRecord::Base
     self.duration = song_duration[0][:text].gsub(/\000/, '') unless song_duration.blank? || song_duration[0][:text].blank?
     self.year = tag.year.gsub(/\000/, '') unless tag.year.blank?
   end
+
+  def launch_path
+	  path.gsub('/cygdrive/d', 'D:').gsub('/', '\\')
+  end
       
 end

@@ -1,8 +1,8 @@
 class Clamp
-  @@path = "F:/Program\ Files/clamp.exe"
+  @@path = CONFIG["path_to_clamp"]
   
   def initialize()
-    system(@@path + "/START")
+    system(@@path + " /START")
     sleep 1
   end
 
@@ -12,20 +12,19 @@ class Clamp
     puts "#{command} not recognized" and return false unless COMMANDS[command.upcase]
     cmd = "#{@@path} /#{command}" 
     cmd += ' "' + arguments + '"' unless arguments.blank?
-    puts "Running #{cmd}..."
-    system(cmd)
+    puts `#{cmd}`
   end
 
   def play(path)
     self.run('PLCLEAR')
-    self.run('PLADD', path.gsub('/', '\\'))
+    self.run('PLADD', path)
     self.run('PLFIRST')
     self.run('PLAY')
   end
 
   def play_album(tracks)
     self.run('plclear')
-    tracks.each { |track| self.run('pladd', track.path.gsub('/', '\\')) }
+    tracks.each { |track| self.run('pladd', track.launch_path) }
     self.run('plfirst')
     self.run('play')
   end
