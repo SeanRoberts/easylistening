@@ -3,7 +3,7 @@
 %table
   - @albums.each do |album|
     %tr{:class => cycle('normal', 'alternate')}
-      %td{:style => "width: 16px;"}= link_to image_tag("control_play.png"), "/albums/play/#{album.id}"
+      %td{:style => "width: 16px;"}= link_to image_tag("control_play.png"), "/albums/play/#{album.id}", :class => "play-link"
     
       %td
         %strong= album.title

@@ -1,0 +1,11 @@
+%ul
+  %li
+    %strong= @info[:current_track].artist.title
+    %br/
+    = @info[:current_track].title
+  
+  %li
+    .progress-holder
+      .progress{:style => "width: #{@info[:player_position_percent]}%"}
+    = @info[:player_position].map { |pos| pos.to_i.to_mm_ss }.join(' / ')
+    

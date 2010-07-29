@@ -1,18 +1,11 @@
 = will_paginate @tracks
 
 %table
-  %tr
-    %th Title
-    %th Artist
-    %th Album
-    %th Track #
   - @tracks.each do |track|
-    %tr{:class => cycle('normal', 'alternate')}
+    %tr{:class => cycle(nil, 'alternate')}
+      %td{:style => "width: 16px;"}= link_to image_tag("control_play.png"), "/tracks/play/#{track.id}", :class => "play-link"
       %td
-        = track.title
-        = link_to "play", "/tracks/play/#{track.id}"
-        &nbsp;
-        = link_to "play album", "/albums/play/#{track.album.id}" if track.album
-      %td= track.artist.title if track.artist
-      %td= track.album.title if track.album
-      %td= track.track_number
+        %strong= track.title
+        %br/ 
+        = track.artist.title if track.artist
+        = "- " + track.album.title if track.album

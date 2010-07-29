@@ -58,6 +58,7 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	font-size: 11px;
+	margin-bottom: 15px;
 }
 
 th, td {
@@ -88,6 +89,25 @@ h1, h2 {
 	margin: 0px 0px 10px;
 }
 
+#info {
+	margin-top: 10px;
+	font-size: 11px;
+}
+
+.progress {
+	height: 10px;
+	background: #D1A29C;
+}
+
+.progress-holder {
+	width: 100%;
+	border: 1px solid black;
+	margin-bottom: 3px;
+}
+
+.play-link {
+	outline: none;
+}
 /*------------- navigation ----------- */
 #nav a {
 	text-decoration: none;

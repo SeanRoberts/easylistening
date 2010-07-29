@@ -75,4 +75,6 @@ Rails::Initializer.run do |config|
 end
 
 CONFIG = YAML.load(File.open("#{RAILS_ROOT}/config/easy.yml"))
+require CONFIG['player'].downcase
+PLAYER = CONFIG['player'].constantize
 require 'will_paginate'
